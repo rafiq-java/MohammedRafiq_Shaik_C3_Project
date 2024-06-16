@@ -10,6 +10,7 @@ public class Restaurant {
     public LocalTime openingTime;
     public LocalTime closingTime;
     private List<Item> menu = new ArrayList<Item>();
+    ArrayList<Integer> cart = new ArrayList<>();
 
     public Restaurant(String name, String location, LocalTime openingTime, LocalTime closingTime) {
         this.name = name;
@@ -39,7 +40,7 @@ public class Restaurant {
             return this.menu;
         }
     }
-        //DELETE ABOVE RETURN STATEMENT AND WRITE CODE HERE
+    //DELETE ABOVE RETURN STATEMENT AND WRITE CODE HERE
 
     private Item findItemByName(String itemName){
         for(Item item: menu) {
@@ -53,7 +54,7 @@ public class Restaurant {
         Item newItem = new Item(name,price);
         menu.add(newItem);
     }
-    
+
     public void removeFromMenu(String itemName) throws itemNotFoundException {
 
         Item itemToBeRemoved = findItemByName(itemName);
@@ -74,5 +75,23 @@ public class Restaurant {
     public String getName() {
         return name;
     }
+
+    public int getItemPrice(String itemName){
+        return findItemByName(itemName).getPrice();
+    }
+    public void addToCart(String itemName){
+        cart.add(this.getItemPrice(itemName));
+    }
+    public ArrayList<Integer> getCart(){
+        return this.cart;
+    }
+    public int cartTotal(ArrayList<Integer> carts){
+        int total = 0;
+        for(Integer cart : carts){
+            total = cart+total;
+        }
+        return total;
+    }
+
 
 }
