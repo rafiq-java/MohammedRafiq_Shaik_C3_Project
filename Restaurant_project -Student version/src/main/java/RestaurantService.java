@@ -7,7 +7,7 @@ public class RestaurantService {
 
     public Restaurant findRestaurantByName(String restaurantName) throws restaurantNotFoundException {
         Restaurant restaurantDummy = null;
-       List<Restaurant> restauran = restaurants;
+     //  List<Restaurant> restauran = restaurants;
         for (Restaurant restaurant : restaurants) {
             if (restaurant.getName().equals(restaurantName)) {
                 restaurantDummy = restaurant;
@@ -36,4 +36,5 @@ public class RestaurantService {
     public List<Restaurant> getRestaurants() {
         return restaurants;
     }
+
 }

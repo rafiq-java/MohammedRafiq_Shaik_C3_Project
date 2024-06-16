@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalTime;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RestaurantTest {
@@ -59,4 +60,30 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    @Test
+    public void display_order_total_should_display_total_price_of_items_in_cart(){
+
+        restaurant.addToMenu("Sweet corn soup",119);
+        restaurant.addToMenu("Vegetable lasagne", 269);
+        restaurant.addToCart("Sweet corn soup");
+        restaurant.addToCart("Vegetable lasagne");
+        int x = restaurant.cartTotal(restaurant.getCart());
+        assertEquals(x,388);
+    }
+    @Test
+    public void add_item_to_cart_should_increase_cart_size_by_1(){
+        restaurant.addToMenu("Sweet corn soup",119);
+        restaurant.addToMenu("Vegetable lasagne", 269);
+        int y = restaurant.getCart().size();
+        restaurant.addToCart("Sweet corn soup");
+        assertTrue(y < restaurant.getCart().size());
+
+    }
+
+    @Test
+    public void display_order_total_should_return_0_if_cart_is_empty(){
+    int z = restaurant.cartTotal(restaurant.getCart());
+    assertEquals(0,z);
+    }
 }
